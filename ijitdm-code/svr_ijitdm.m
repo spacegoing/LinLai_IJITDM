@@ -31,7 +31,6 @@ net = train(net,X,Y);
 Y_hat_fnn = net(X_t);
 perf = perform(net,Y_hat_fnn,Y_t);
 
-Y_hat_fnn = Y_hat_fnn';
 
 %% code for SVR (only available after release r2016a)
 
@@ -49,14 +48,16 @@ Y_hat_svm = predict(svm_Mdl,X_t_svm);
 X_rf = array2table(X_svm);
 Y_rf = Y_svm;
 
-X_t_rf = array2table(X_t_svm);
+X_t_rf = X_t_svm;
 Y_t_rf = Y_t_svm;
 
 rf_Mdl = fitrensemble(X_rf,Y,'CrossVal','on');
 Y_hat_rf = predict(rf_Mdl,X_t_rf);
 
-
-save results Y_hat_fnn Y_hat_rf Y_hat_svm
+%% Save Results
+Y_hat_fnn = Y_hat_fnn';
+Y_t = Y_t';
+save results Y_hat_fnn Y_hat_rf Y_hat_svm Y_t
 
 
 
