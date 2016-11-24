@@ -1,5 +1,8 @@
 %% Data processing
 
+% Fix Random Seed
+rng(0);
+
 %%%%%%%%%%%%%%%%%% Train Data %%%%%%%%%%%%%%%%%%
 % read xlsx data
 raw_data = xlsread('train.xlsx');
@@ -51,7 +54,7 @@ Y_rf = Y_svm;
 X_t_rf = X_t_svm;
 Y_t_rf = Y_t_svm;
 
-rf_Mdl = fitrensemble(X_rf,Y,'CrossVal','on');
+rf_Mdl = fitrensemble(X_rf,Y);
 Y_hat_rf = predict(rf_Mdl,X_t_rf);
 
 %% Save Results
