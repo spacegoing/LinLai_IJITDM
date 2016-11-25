@@ -16,14 +16,14 @@ raw_Y = raw_data(:,12)';
 
 %%%%%%%%%%%%%%%%%% Test Data %%%%%%%%%%%%%%%%%%%
 % read xlsx data
-raw_data_t = xlsread('train.xlsx');
+raw_data_t = xlsread('test.xlsx');
 raw_X_t = raw_data_t(:,2:11)';
 raw_Y_t = raw_data_t(:,12)';
 
 % normalization
 % the result is m by n (number of instances) matrix
-[X_t,input_attrs] = mapminmax(raw_X_t);
-[Y_t,output_attrs] = mapminmax(raw_Y_t);
+[X_t,input_attrs_t] = mapminmax(raw_X_t);
+[Y_t,output_attrs_t] = mapminmax(raw_Y_t);
 
 
 %% code for FNN (only available after release r2015a)
@@ -58,9 +58,15 @@ rf_Mdl = fitrensemble(X_rf,Y);
 Y_hat_rf = predict(rf_Mdl,X_t_rf);
 
 %% Save Results
-Y_hat_fnn = Y_hat_fnn';
-Y_t = Y_t';
-save results Y_hat_fnn Y_hat_rf Y_hat_svm Y_t
+Y_t = mapminmax('reverse',Y_t,output_attrs_t)';
+
+Y_hat_fnn = mapminmax('reverse',Y_hat_fnn,output_attrs_t)';
+
+Y_hat_svm = mapminmax('reverse',Y_hat_svm,output_attrs_t)';
+
+Y_hat_rf = mapminmax('reverse',Y_hat_rf,output_attrs_t)';
+
+save results Y_t Y_hat_fnn Y_hat_svm Y_hat_rf
 
 
 
