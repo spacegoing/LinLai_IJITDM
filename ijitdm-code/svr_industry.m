@@ -32,10 +32,10 @@ raw_Y_t = raw_data(train_num+1:end,12)';
 % the result is m by n (number of instances) matrix
 [sent_X_t,sent_input_attrs_t] = mapminmax(raw_sent_X_t);
 [no_sent_X_t,no_sent_input_attrs_t] = mapminmax(raw_no_sent_X_t);
-[Y_t,output_attrs] = mapminmax(raw_Y_t);
+[Y_t,output_attrs_t] = mapminmax(raw_Y_t);
 
-sent_X_t = sent_X';
-no_sent_X_t = no_sent_X';
+sent_X_t = sent_X_t';
+no_sent_X_t = no_sent_X_t';
 Y_t=Y_t';
 
 %% SVR
@@ -45,6 +45,9 @@ no_sent_Mdl = fitrlinear(no_sent_X,Y);
 
 sent_Y_hat = predict(sent_Mdl,sent_X_t);
 no_sent_Y_hat = predict(no_sent_Mdl,no_sent_X_t);
+
+sent_Y_hat = mapminmax('reverse',sent_Y_hat,output_attrs_t)';
+no_sent_Y_hat  = mapminmax('reverse',no_sent_Y_hat,output_attrs_t)';
 
 
 end
