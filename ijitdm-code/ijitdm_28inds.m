@@ -1,4 +1,7 @@
-filenames={'交通运输.xlsx',
+% Fix Random Seed
+rng(0);
+
+filenames_results={'交通运输.xlsx',
            '休闲服务.xlsx',
            '传媒.xlsx',
            '公用事业.xlsx',
@@ -26,4 +29,10 @@ filenames={'交通运输.xlsx',
            '银行.xlsx',
            '非银金融.xlsx',
            '食品饮料.xlsx'};
+num_files = length(filenames_results);
 
+for i=1:num_files
+  filenames_results(i,2) = {svr_industry(['28_Industs/' industry_name])};
+end
+
+save filenames_results
