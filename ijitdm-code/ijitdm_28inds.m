@@ -35,7 +35,7 @@ results = cell(num_files,3);
 results = filenames(:,1);
 
 for i=1:num_files
-  results(i,2:3) = {svr_industry(['28_Industs/' filenames(i)])};
+  results(i,2:3) = {svr_industry(['28_Industs/' filenames{i}])};
 end
 
 save filenames_results results
