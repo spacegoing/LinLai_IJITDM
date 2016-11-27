@@ -1,4 +1,4 @@
-filenames=['交通运输.xlsx',
+filenames={'交通运输.xlsx',
            '休闲服务.xlsx',
            '传媒.xlsx',
            '公用事业.xlsx',
@@ -25,5 +25,5 @@ filenames=['交通运输.xlsx',
            '钢铁.xlsx',
            '银行.xlsx',
            '非银金融.xlsx',
-           '食品饮料.xlsx']
+           '食品饮料.xlsx'};
 
