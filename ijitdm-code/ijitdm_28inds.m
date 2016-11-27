@@ -1,7 +1,7 @@
 % Fix Random Seed
 rng(0);
 
-filenames_results={'交通运输.xlsx',
+filenames={'交通运输.xlsx',
            '休闲服务.xlsx',
            '传媒.xlsx',
            '公用事业.xlsx',
@@ -29,10 +29,13 @@ filenames_results={'交通运输.xlsx',
            '银行.xlsx',
            '非银金融.xlsx',
            '食品饮料.xlsx'};
-num_files = length(filenames_results);
+num_files = length(filenames);
+
+results = cell(num_files,3);
+results = filenames(:,1);
 
 for i=1:num_files
-  filenames_results(i,2) = {svr_industry(['28_Industs/' industry_name])};
+  results(i,2:3) = {svr_industry(['28_Industs/' industry_name])};
 end
 
-save filenames_results
+save filenames_results results
