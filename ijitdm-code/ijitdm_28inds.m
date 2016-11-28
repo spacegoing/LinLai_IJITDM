@@ -40,3 +40,18 @@ for i=1:num_files
 end
 
 save filenames_results results
+%%
+
+for i=1:num_files
+    raw_data = xlsread(['28_Industs/' filenames{i}]);
+    A = isnan(raw_data);
+    if any(A)
+        disp(filenames{i});
+    end
+end
+
+
+
+
+
+
