@@ -39,10 +39,6 @@ no_sent_X_t = no_sent_X_t';
 Y_t=Y_t';
 
 %% SVR
-A = isnan(sent_X);
-if any(A)
-    display(industry_name);
-end
 sent_Mdl = fitrlinear(sent_X,Y);
 no_sent_Mdl = fitrlinear(no_sent_X,Y);
 
