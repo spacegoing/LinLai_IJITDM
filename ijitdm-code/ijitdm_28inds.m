@@ -35,7 +35,8 @@ results = cell(num_files,3);
 results = filenames(:,1);
 
 for i=1:num_files
-  results(i,2:3) = {svr_industry(['28_Industs/' filenames{i}])};
+  [no_sent_Y_hat, sent_Y_hat] = svr_industry(['28_Industs/' filenames{i}]);
+  results(i,2:3) = {no_sent_Y_hat, sent_Y_hat};
 end
 
 save filenames_results results
